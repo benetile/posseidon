@@ -16,8 +16,10 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
+
     @Autowired
     private UserRepository userRepository;
+
 
     @RequestMapping("/user/list")
     public String home(Model model)
