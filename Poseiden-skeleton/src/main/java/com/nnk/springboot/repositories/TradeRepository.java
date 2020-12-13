@@ -9,8 +9,5 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface TradeRepository extends JpaRepository<Trade, Integer> {
-    @Transactional
-    @Modifying
-    @Query("update Trade t set t.account=:account,t.buyQuantity=:buyQuantity where t.tradeId=:id")
-    void updateTrade(@Param("id")int id, @Param("buyQuantity")double buyQuantity);
+
 }

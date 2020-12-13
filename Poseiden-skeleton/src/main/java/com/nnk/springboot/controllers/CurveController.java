@@ -58,7 +58,8 @@ public class CurveController {
         if(result.hasErrors()){
             return "curvePoint/list";
         }
-        curvePointRepository.updateCurvePoint(id, curvePoint.getCurveId(), curvePoint.getTerm(), curvePoint.getValue());
+        curvePoint.setId(id);
+        curvePointRepository.save(curvePoint);
         model.addAttribute("curvePoints",curvePointRepository.findAll());
         return "redirect:/curvePoint/list";
     }

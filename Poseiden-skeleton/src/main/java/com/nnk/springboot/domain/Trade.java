@@ -12,7 +12,9 @@ public class Trade {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer tradeId;
+    @NotBlank(message = "account is mandatory")
     private String account;
+    @NotBlank(message = "type is mandatory")
     private String type;
     private Double buyQuantity;
     private Double sellQuantity;
@@ -33,27 +35,9 @@ public class Trade {
     private String sourceListId;
     private String side;
 
-    public Trade(String account, String type, Double buyQuantity, Double sellQuantity, Double buyPrice, Double sellPrice, String benchmark, Timestamp tradeDate, String security, String status, String trader, String book, String creationName, Timestamp creationDate, String revisionName, Timestamp revisionDate, String dealName, String dealType, String sourceListId, String side) {
+    public Trade(@NotBlank(message = "account is mandatory") String account, @NotBlank(message = "type is mandatory") String type) {
         this.account = account;
         this.type = type;
-        this.buyQuantity = buyQuantity;
-        this.sellQuantity = sellQuantity;
-        this.buyPrice = buyPrice;
-        this.sellPrice = sellPrice;
-        this.benchmark = benchmark;
-        this.tradeDate = tradeDate;
-        this.security = security;
-        this.status = status;
-        this.trader = trader;
-        this.book = book;
-        this.creationName = creationName;
-        this.creationDate = creationDate;
-        this.revisionName = revisionName;
-        this.revisionDate = revisionDate;
-        this.dealName = dealName;
-        this.dealType = dealType;
-        this.sourceListId = sourceListId;
-        this.side = side;
     }
 
     public Trade() {

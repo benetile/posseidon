@@ -3,8 +3,7 @@ package com.nnk.springboot.domain;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
 
@@ -15,18 +14,19 @@ public class CurvePoint {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+    @NotNull(message = "must not be null")
     private Integer curveId;
     private Timestamp asOfDate;
+    @Min(1)
     private double term;
+    @Min(1)
     private double value;
     private Timestamp creationDate;
 
-    public CurvePoint(Integer curveId, Timestamp asOfDate, double term, double value, Timestamp creationDate) {
+    public CurvePoint(@NotNull(message = "must not be null") Integer curveId, @Min(1) double term, @Min(1) double value) {
         this.curveId = curveId;
-        this.asOfDate = asOfDate;
         this.term = term;
         this.value = value;
-        this.creationDate = creationDate;
     }
 
     public CurvePoint() {

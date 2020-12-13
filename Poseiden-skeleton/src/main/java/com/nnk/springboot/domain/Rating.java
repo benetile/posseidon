@@ -12,12 +12,16 @@ public class Rating {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+    @NotNull(message = "MoodysRating is mandatory")
     private String moodysRating;
+    @NotNull(message = "sandPRating is mandatory")
     private String sandPRating;
+    @NotNull(message = "fitchRating is mandatory")
     private String fitchRating;
+    @NotNull(message = "must not be null")
     private Integer orderNumber;
 
-    public Rating(String moodysRating, String sandPRating, String fitchRating, Integer orderNumber) {
+    public Rating(@NotNull(message = "MoodysRating is mandatory") String moodysRating, @NotNull(message = "sandPRating is mandatory") String sandPRating, @NotNull(message = "fitchRating is mandatory") String fitchRating, @NotNull(message = "must not be null") Integer orderNumber) {
         this.moodysRating = moodysRating;
         this.sandPRating = sandPRating;
         this.fitchRating = fitchRating;

@@ -11,14 +11,21 @@ public class RuleName {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+    @NotBlank(message = "name is mandatory")
     private String name;
+    @NotBlank(message = "description is mandatory")
     private String description;
+    @NotBlank(message = "json is mandatory")
     private String json;
+    @NotBlank(message = "template is mandatory")
     private String template;
+    @NotBlank(message = "sqlStr is mandatory")
     private String sqlStr;
+    @NotBlank(message = "sqlPart is mandatory")
     private String sqlPart;
 
-    public RuleName(String name, String description, String json, String template, String sqlStr, String sqlPart) {
+    public RuleName(@NotBlank(message = "name is mandatory")String name,@NotBlank(message = "description is mandatory") String description,@NotBlank(message = "json is mandatory")String json,
+                    @NotBlank(message = "template is mandatory")String template,@NotBlank(message = "sqlStr is mandatory") String sqlStr,@NotBlank(message = "sqlPart is mandatory") String sqlPart) {
         this.name = name;
         this.description = description;
         this.json = json;

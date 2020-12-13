@@ -47,7 +47,6 @@ public class RuleNameController {
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get RuleName by Id and to model then show to the form
         RuleName ruleName = ruleNameRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Invalid RuleName Id:" + id));
-        ruleNameRepository.updateRuleName(id,ruleName.getSqlStr(),ruleName.getSqlPart());
         model.addAttribute("ruleNames",ruleNameRepository.findAll());
         return "ruleName/update";
     }
@@ -59,7 +58,8 @@ public class RuleNameController {
         if(result.hasErrors()){
             return "ruleName/list";
         }
-        ruleNameRepository.updateRuleName(id,ruleName.getSqlStr(),ruleName.getSqlPart());
+        ruleName.setId(id);
+        ruleNameRepository.save(ruleName);
         model.addAttribute("ruleNames",ruleNameRepository.findAll());
         return "redirect:/ruleName/list";
     }

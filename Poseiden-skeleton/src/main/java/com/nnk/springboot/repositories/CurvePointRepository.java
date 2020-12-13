@@ -11,7 +11,6 @@ public interface CurvePointRepository extends JpaRepository<CurvePoint, Integer>
 
     @Transactional
     @Modifying
-    @Query("update CurvePoint u set u.curveId =:curveId,u.term=:term, u.value=:value where u.id=:id")
-    void updateCurvePoint(@Param("id")int id,@Param("curveId") int curveId,
-                          @Param("term") double term,@Param("value") double value);
+    @Query("update CurvePoint u set u.term=:term, u.value=:value where u.id=:id")
+    void updateCurvePoint(@Param("id")int id,@Param("term") double term,@Param("value") double value);
 }

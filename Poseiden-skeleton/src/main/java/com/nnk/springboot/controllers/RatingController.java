@@ -59,8 +59,8 @@ public class RatingController {
         if(result.hasErrors()){
             return "rating/list";
         }
-        Rating rt = ratingRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Invalid Rating Id:" + id));
-        ratingRepository.updateRating(id,rt.getMoodysRating(), rt.getSandPRating(),rt.getFitchRating(), rt.getOrderNumber());
+        rating.setId(id);
+        ratingRepository.save(rating);
         model.addAttribute("ratings",ratingRepository.findAll());
         return "redirect:/rating/list";
     }

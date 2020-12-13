@@ -10,10 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 public interface RatingRepository extends JpaRepository<Rating, Integer> {
-    @Transactional
-    @Modifying
-    @Query("update Rating r set r.moodysRating=:moodysRating,r.sandPRating=:sandPRating,r.fitchRating=:fitchRating,r.orderNumber=:orderNumber where r.id=:id")
-    void updateRating(@Param("id")int id,@Param("moodysRating") String moodysRating,@Param("sandPRating")String sandPRating,
-                      @Param("fitchRating")String fitchRating,@Param("orderNumber") int orderNumber);
 
 }

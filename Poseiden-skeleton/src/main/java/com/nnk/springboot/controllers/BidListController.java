@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 
 @Controller
@@ -42,6 +44,7 @@ public class BidListController {
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return bid list
         if (!result.hasErrors()) {
+            bid.setCreationDate(new Timestamp(System.currentTimeMillis()));
             bidListRepository.save(bid);
             model.addAttribute("bidLists",bidListRepository.findAll());
             return "redirect:/bidList/list";
@@ -65,7 +68,9 @@ public class BidListController {
         if(result.hasErrors()){
             return "bidList/list";
         }
-        bidListRepository.updateBidList(id, bidList.getBidQuantity());
+        bidList.setBidListId(id);
+        bidList.setRevisionDate(new Timestamp(System.currentTimeMillis()));
+        bidListRepository.save(bidList);
         model.addAttribute("bidLists",bidListRepository.findAll());
         return "redirect:/bidList/list";
     }

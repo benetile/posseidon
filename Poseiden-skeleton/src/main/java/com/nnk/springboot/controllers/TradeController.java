@@ -57,7 +57,8 @@ public class TradeController {
         if(result.hasErrors()){
             return "trade/list";
         }
-        tradeRepository.updateTrade(id,trade.getBuyQuantity());
+        trade.setTradeId(id);
+        tradeRepository.save(trade);
         model.addAttribute("trades",tradeRepository.findAll());
         return "redirect:/trade/list";
     }
